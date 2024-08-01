@@ -19,6 +19,19 @@ class View:
         file_menu.add_command(label="Exit", command=self.root.quit)
         self.menubar.add_cascade(label="File", menu=file_menu)
 
+        # Create a Ball menu
+        ball_menu = tk.Menu(self.menubar, tearoff=0)
+        ball_menu.add_command(label="Start", command=self.set_balls_at_start)
+        ball_menu.add_separator()
+        ball_menu.add_command(label="Set Pos White", command=self.set_pos_white_ball)
+        ball_menu.add_command(label="Set Pos Amber", command=self.set_pos_orange_ball)
+        ball_menu.add_command(label="Set Pos Red", command=self.set_pos_red_ball)
+        ball_menu.add_separator()
+        ball_menu.add_command(label="Show White", command=self.controller.show_white_ball)
+        ball_menu.add_command(label="Show Amber", command=self.controller.show_orange_ball)
+        ball_menu.add_command(label="Show Red", command=self.controller.show_red_ball)
+        self.menubar.add_cascade(label="Ball", menu=ball_menu)
+
         # Create a Grid menu with checkable options to show/hide each grid
         self.grid_menu = tk.Menu(self.menubar, tearoff=0)
         self.var={}
@@ -27,7 +40,7 @@ class View:
             self.var[g].set(self.controller.display_dict[g][0])
             self.grid_menu.add_checkbutton(label=g, variable=self.var[g],
                                            onvalue=1, offvalue=0,
-                                           command=lambda x=g: self.toggle(x))
+                                           command=lambda x=g: self.toggle_grid(x))
         self.menubar.add_cascade(label="Grid", menu=self.grid_menu)
 
 
@@ -56,7 +69,7 @@ class View:
         for g in controller.GRIDS:
             self.hide(self.drawing[g])
 
-    def toggle(self, g):
+    def toggle_grid(self, g):
         if self.var[g].get() :
             print(f"{g} is now enabled")
             self.controller.display_dict[g] = True, self.controller.display_dict[g][1]
@@ -86,4 +99,18 @@ class View:
                 self.hide(v)
         else:
             self.canvas.itemconfigure(f, state='hidden')
+
+    def set_balls_at_start(self):
+        print("Set balls at starting pos")
+        self.controller.set_balls_at_start()
+        print("Updating canvas")
+        self.canvas.update()
+
+
+    def set_pos_white_ball(self):
+        pass
+    def set_pos_orange_ball(self):
+        pass
+    def set_pos_red_ball(self):
+        pass
 

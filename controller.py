@@ -17,6 +17,33 @@ class Controller:
         self.display_dict['spot'] = True, [s.display_list for s in self.model.spot]
         self.view = View(root, self)
 
+    def set_pos_white_ball(self):
+        self._set_ball_pos('white')
+    def set_pos_orange_ball(self):
+        self._set_ball_pos('white')
+    def set_pos_red_ball(self):
+        self._set_ball_pos('white')
+
+    def set_balls_at_start(self):
+        self.model.set_starting_pos()
+        # Update display dict
+
+
+    def _set_ball_pos(self, b):
+        pass
+
+    def show_white_ball(self):
+        self._set_ball_pos('white')
+
+    def show_orange_ball(self):
+        self._set_ball_pos('white')
+
+    def show_red_ball(self):
+        self._set_ball_pos('white')
+
+    def show_ball(self, b):
+        pass
+
     def draw_line(self):
         self.line_id = self.view.canvas.create_line(50, 50, 200, 200, fill="blue", width=2)
 

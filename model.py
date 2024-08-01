@@ -158,7 +158,11 @@ class Model:
         #
         #
         #
+    def set_starting_pos(self):
 
+        self.ball['red'].position = self.spot[0].position
+        self.ball['orange'].position =  self.spot[3].position
+        self.ball['white'].position = self.spot[2].position
 
 
 
